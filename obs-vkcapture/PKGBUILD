@@ -6,7 +6,7 @@ url="https://github.com/nowrep/$pkgbase"
 license=('GPL2')
 arch=('x86_64')
 depends=('vulkan-icd-loader' 'libgl' 'libegl' 'obs-studio>=27')
-makedepends=('gcc' 'cmake' 'vulkan-headers')
+makedepends=('gcc' 'cmake' 'vulkan-headers' 'pkgconf')
 source=("https://github.com/nowrep/$pkgbase/archive/v$pkgver/$pkgbase-$pkgver.tar.gz")
 sha512sums=('856a735ca3d1ed9f04c91c7e4a006aca2a72389a4ac0dee13d2b1f87da8e622d71dda400bb263499ddd04b1bc4294e7270382fc12e91e82a8ed554de8e3a4c96')
 

@@ -1,0 +1,41 @@
+# Maintainer: Esme Povirk <madewokherd@gmail.com>
+pkgname=InputRedirection-SDL-git
+pkgver=r21.5cff8ce
+pkgrel=1
+pkgdesc="Client for sending inputs to Luma3DS firmware"
+arch=('x86_64')
+url="https://github.com/Stary2001/InputClient-SDL"
+license=('GPL')
+groups=()
+depends=('sdl2' 'sdl2_ttf' 'ttf-dejavu')
+makedepends=('git' 'make' 'gcc')
+provides=("${pkgname%-git}")
+conflicts=("${pkgname%-git}")
+replaces=()
+backup=()
+options=()
+install=
+source=('InputRedirection-SDL::git+https://github.com/Stary2001/InputClient-SDL#branch=master')
+noextract=()
+sha256sums=('SKIP')
+
+pkgver() {
+	cd "$srcdir/${pkgname%-git}"
+	printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+prepare() {
+        cd "$srcdir/${pkgname%-git}"
+        patch -p1 -i "$srcdir/${pkgname%-git}.patch"
+}
+
+build() {
+	cd "$srcdir/${pkgname%-git}"
+	make
+}
+
+package() {
+	cd "$srcdir/${pkgname%-git}"
+	mkdir -p "$pkgdir/usr/bin/"
+	install ./input "$pkgdir/usr/bin/"
+}
